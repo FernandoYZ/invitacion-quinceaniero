@@ -1,34 +1,38 @@
 ---
-import Layout from '@layout';
-import Temporizador from '@components/Temporizador';
-import MusicPlayer from '@components/MusicPlayer';
-import audioFile from '@assets/music/musica.mp3';
-import PrimeraParte from '@components/PrimeraParte.astro';
-import SegundaParte from '@components/SegundaParte.astro';
-import PadresSection from '@components/PadresSection.astro';
-import Fecha from '@components/Fecha.astro';
-import PrimerAgradecimiento from '@components/PrimerAgradecimiento.astro';
-import Recepcion from '@components/Recepcion.astro';
-import Asistencia from '@components/Asistencia.astro';
-import Despedida from '@components/Despedida.astro';
+import Layout from "@layout";
+import Temporizador from "@components/Temporizador";
+import MusicPlayer from "@components/MusicPlayer";
+import audioFile from "@assets/music/musica.mp3";
+import PrimeraParte from "@components/PrimeraParte.astro";
+import SegundaParte from "@components/SegundaParte.astro";
+import PadresSection from "@components/PadresSection.astro";
+import Fecha from "@components/Fecha.astro";
+import PrimerAgradecimiento from "@components/PrimerAgradecimiento.astro";
+import Recepcion from "@components/Recepcion.astro";
+import Asistencia from "@components/Asistencia.astro";
+import Despedida from "@components/Despedida.astro";
+import DressCode from "@components/DressCode.astro";
+import Dedicatoria from "@components/Dedicatoria.astro";
 ---
 
 <Layout>
-	<main class="container mx-auto">
-		<PrimeraParte />
-		<Temporizador client:load />
-		<MusicPlayer 
-			audioUrl={audioFile}
-			songTitle="Veo en ti la luz" 
-			artist="ENREDADOS"
-			client:idle
-		/>
-		<SegundaParte />
-		<PadresSection />
-		<Fecha />
-		<PrimerAgradecimiento />
-		<Recepcion />
-		<Asistencia />
-		<Despedida />
-	</main>
+  <main class="container mx-auto">
+    <PrimeraParte />
+    <Temporizador client:load />
+    <MusicPlayer
+      audioUrl={audioFile}
+      songTitle="Veo en ti la luz"
+      artist="ENREDADOS"
+      client:idle
+    />
+    <SegundaParte />
+    <PadresSection />
+    <Fecha />
+    <PrimerAgradecimiento />
+    <Recepcion />
+    <Asistencia />
+    <Dedicatoria />
+    <DressCode />
+    <Despedida />
+  </main>
 </Layout>

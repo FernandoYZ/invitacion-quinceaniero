@@ -1,0 +1,57 @@
+---
+import linea_superior from "@assets/img/linea_superior.svg";
+import linea_inferior from "@assets/img/linea_inferior.svg";
+import data from "@data";
+import { Image } from "astro:assets";
+---
+
+<section
+  class="px-4 py-8 md:py-12 space-y-6 md:space-y-8 text-center"
+  aria-labelledby="thankyou-section"
+>
+  <header class="space-y-6">
+    <h2
+      id="reception-section"
+      class="text-4xl md:text-5xl lg:text-6xl text-primary font-script font-black leading-tight"
+    >
+      Dedicatoria
+    </h2>
+  </header>
+  <div class="max-w-4xl mx-auto">
+    <!-- Línea decorativa superior -->
+    <div class="mb-6 md:mb-8">
+      <Image
+        src={linea_superior}
+        alt=""
+        class="w-full h-auto max-w-[1200px] mx-auto"
+        width={1200}
+        height={200}
+        loading="eager"
+        fetchpriority="high"
+        aria-hidden="true"
+      />
+    </div>
+
+    <!-- Texto principal -->
+    <h2
+      id="thankyou-section"
+      class="text-primary font-titulo text-3xl md:text-4xl lg:text-5xl font-semibold px-2 leading-tight"
+    >
+      {data.dedicatoria}
+    </h2>
+
+    <!-- Línea decorativa inferior -->
+    <div class="mt-6 md:mt-8">
+      <Image
+        src={linea_inferior}
+        alt=""
+        class="w-full h-auto max-w-[1200px] mx-auto"
+        width={1200}
+        height={200}
+        loading="eager"
+        fetchpriority="high"
+        aria-hidden="true"
+      />
+    </div>
+  </div>
+</section>

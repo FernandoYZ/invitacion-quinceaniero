@@ -1,16 +1,17 @@
 ---
-import data from '@data';
-import wsp from '@assets/img/wsp.svg';
-import { Image } from 'astro:assets';
+import data from "@data";
+import wsp from "@assets/img/wsp.svg";
+import { Image } from "astro:assets";
+import Button from "./Boton.astro";
 ---
 
-<section 
-    class="py-12 px-4 md:py-16 text-center"
-    aria-labelledby="reception-section"
+<section
+  class="py-12 px-4 md:py-16 text-center"
+  aria-labelledby="reception-section"
 >
-    <div class="max-w-4xl mx-auto space-y-10 md:space-y-12">
-        <!-- Icono decorativo -->
-        <!-- <div class="mb-10 md:mb-12">
+  <div class="max-w-4xl mx-auto space-y-10 md:space-y-12">
+    <!-- Icono decorativo -->
+    <!-- <div class="mb-10 md:mb-12">
             <Image
                 src={wsp}
                 alt=""
@@ -23,37 +24,36 @@ import { Image } from 'astro:assets';
             />
         </div> -->
 
-        <!-- Encabezado -->
-        <header class="space-y-6">
-        <h2 
-            id="reception-section"
-            class="text-4xl md:text-5xl lg:text-6xl text-primary font-script font-black leading-tight"
-        >
-            Asistencia
-        </h2>
-        </header>
+    <!-- Encabezado -->
+    <header class="space-y-6">
+      <h2
+        id="reception-section"
+        class="text-4xl md:text-5xl lg:text-6xl text-primary font-script font-black leading-tight"
+      >
+        Asistencia
+      </h2>
+    </header>
 
-        <!-- Contenido principal -->
-        <div class="space-y-10 md:space-y-12 max-w-2xl mx-auto uppercase">
-        <section class="space-y-4 md:space-y-5" aria-labelledby="reception-location">
-            <h3 
-            class="text-xl md:text-2xl tracking-wider font-black text-primary-600"
-            id="reception-location"
-            >
-            Confirmación de Asistencia
-            </h3>
-            <p class="text-sm md:text-xl tracking-wide text-gray-700 font-semibold">
-            {data.asistencia}
-            </p>
-            <div 
-                class="inline-block rounded-3xl px-6 py-3 bg-primary-600 text-white text-lg md:text-xl hover:bg-primary-700 transition-colors cursor-pointer"
-                role="button"
-                tabindex="0"
-                aria-label="Enviar mensaje de WhatsApp"
-            >
-            Confirmar
-            </div>
-        </section>
-        </div>
+    <!-- Contenido principal -->
+    <div class="space-y-10 md:space-y-12 max-w-2xl mx-auto uppercase">
+      <section
+        class="space-y-4 md:space-y-5"
+        aria-labelledby="reception-location"
+      >
+        <h3
+          class="text-xl md:text-2xl tracking-wider font-black text-primary-600"
+          id="reception-location"
+        >
+          Confirmación de Asistencia
+        </h3>
+        <p class="text-sm md:text-xl tracking-wide text-gray-700 font-semibold">
+          {data.asistencia}
+        </p>
+        <Button
+          label="Confirmar"
+          href="https://wa.me/51939673420?text=Hola%20Guisella,%20gracias%20por%20la%20invitaci%C3%B3n%20a%20los%2015%20a%C3%B1os.%20Confirmo%20mi%20asistencia.%20*Mi%20nombre%20es:*"
+        />
+      </section>
     </div>
+  </div>
 </section>
