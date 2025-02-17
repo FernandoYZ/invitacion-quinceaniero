@@ -1,0 +1,177 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+import esquina1 from '@assets/img/esquina_1.svg';
+import esquina2 from '@assets/img/esquina_2.png';
+import esquina3 from '@assets/img/esquina_3.png';
+import esquina4 from '@assets/img/esquina_4.png';
+import borde1 from '@assets/img/borde_1.png';
+import borde2 from '@assets/img/borde_2.png';
+import borde3 from '@assets/img/borde_3.png';
+import borde4 from '@assets/img/borde_4.png';
+import borde5 from '@assets/img/borde_5.png';
+import borde6 from '@assets/img/borde_6.png';
+import fondoAcuarela from '@assets/img/fondo_acuarela.png';
+
+interface BordeConfig {
+  src: ImageMetadata;
+  position: 'left' | 'right';
+}
+
+const bordes: BordeConfig[] = [
+    { src: borde1, position: 'left' },
+    { src: borde2, position: 'left' },
+    { src: borde3, position: 'left' },
+    { src: borde4, position: 'right' },
+    { src: borde5, position: 'right' },
+    { src: borde6, position: 'right' },
+];
+---
+
+<style is:global>
+    .borde-dinamico {
+        position: fixed;
+        transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+        .borde-dinamico {
+        transition: none;
+        }
+    }
+</style>
+
+<div class="fixed inset-0 -z-50 pointer-events-none">
+    <!-- Fondo acuarela optimizado -->
+    <div class="absolute inset-0 opacity-15">
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+        <div
+            class="absolute w-[300px] h-[400px] object-contain opacity-40"
+            style={`
+            left: ${i < 3 ? '0' : 'auto'};
+            right: ${i >= 3 ? '0' : 'auto'};
+            top: ${((i % 3 + 1) * 100) / 4}%;
+            transform: translate(${i < 3 ? '-30%' : '30%'}, -50%);
+            `}
+        >
+            <Image
+            src={fondoAcuarela}
+            alt=""
+            loading="lazy"
+            sizes="(max-width: 768px) 200px, 300px"
+            quality="medium"
+            />
+        </div>
+        ))}
+    </div>
+
+    <!-- Esquinas con Image optimizado -->
+    <div class="absolute inset-0">
+        <Image
+            src={esquina1}
+            class="absolute top-0 left-0 w-[clamp(230px,60%,300px)]"
+            alt=""
+            sizes="(max-width: 768px) 100%, 700px"
+        />
+        <Image
+            src={esquina4}
+            class="absolute top-0 right-0 w-[clamp(200px,30vw,200px)]"
+            alt=""
+            format="webp"
+            sizes="(max-width: 768px) 50%, 200px"
+        />
+        <Image
+            src={esquina3}
+            class="absolute bottom-0 left-0 w-[clamp(200px,25vw,150px)]"
+            alt=""
+            format="webp"
+            sizes="(max-width: 768px) 50%, 150px"
+        />
+        <Image
+            src={esquina2}
+            class="absolute bottom-0 right-0 w-[clamp(230px,25vw,150px)]"
+            alt=""
+            format="webp"
+            sizes="(max-width: 768px) 55%, 150px"
+        />
+    </div>
+
+    <!-- Bordes dinámicos -->
+    <div id="bordes-container" class="fixed inset-0">
+        {bordes.map((borde, index) => (
+        <div
+            id={`borde-${index + 1}`}
+            class={`borde-dinamico w-[220px] -translate-y-1/2 ${
+                borde.position === 'left' ? 'left-0' : 'right-0'
+            }`}
+        >
+            <div
+            class="absolute -z-10 w-full h-full opacity-20"
+            style={`transform: translateX(${borde.position === 'left' ? '-30%' : '30%'});`}
+            >
+            <Image
+                src={fondoAcuarela}
+                alt=""
+                loading="lazy"
+                format="webp"
+            />
+            </div>
+            <Image
+            src={borde.src}
+            class="w-full h-auto"
+            alt=""
+            loading={index > 0 ? 'lazy' : 'eager'}
+            format="webp"
+            sizes="220px"
+            />
+        </div>
+        ))}
+    </div>
+</div>
+
+<script>
+// Cálculo de posiciones inicial
+type ResizeTimeout = number | undefined;
+
+const calcularPosiciones = (): void => {
+    const vh = window.innerHeight;
+    const numBordes = Math.min(3, Math.max(1, Math.floor(vh / 400)));
+    const container = document.getElementById('bordes-container');
+    
+    if (!container) return;
+
+    Array.from(container.children).forEach((borde, index) => {
+        const isLeft = index < 3;
+        const positionIndex = isLeft ? index : index - 3;
+        const positionPercentage = ((positionIndex + 1) * 100) / (numBordes + 1);
+        
+        if (positionIndex < numBordes) {
+        (borde as HTMLElement).style.top = `${positionPercentage}%`;
+        (borde as HTMLElement).style.display = 'block';
+        } else {
+        (borde as HTMLElement).style.display = 'none';
+        }
+    });
+};
+
+// Debounce resize
+let resizeTimeout: ResizeTimeout;
+const handleResize = (): void => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(calcularPosiciones, 150);
+};
+
+// Inicialización
+window.addEventListener('DOMContentLoaded', () => {
+    calcularPosiciones();
+    window.addEventListener('resize', handleResize);
+});
+
+// Limpieza
+window.addEventListener('beforeunload', () => {
+    window.removeEventListener('resize', handleResize);
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+});
+</script>

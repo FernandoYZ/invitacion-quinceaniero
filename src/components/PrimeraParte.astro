@@ -1,0 +1,18 @@
+---
+import nombre from '@assets/img/nombre_principal.svg';
+import data from '@data';
+
+import { Image } from 'astro:assets';
+---
+<section class="pt-12">
+    <Image
+        src={nombre}
+        alt=""
+        class="w-[280px] md:w-[400px] mx-auto"
+        width="96"
+        height="96"
+        loading="eager"
+        fetchpriority="high"
+        aria-hidden="true"
+    />
+</section>

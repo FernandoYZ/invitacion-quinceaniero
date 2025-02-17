@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import data from '@data';
+const { saludo } = data;
+import imagen_principal from "@assets/img/nombre.svg";
+import banda from "@assets/img/banda_quinceanero.svg";
+---
+
+<section class="flex flex-col items-center justify-start w-full px-4 md:px-8 py-6 md:py-12 gap-8 md:gap-12">
+    <p class="text-primary text-lg md:text-xl font-light max-w-[200px] text-center animate-bounce">
+        Desliza hacia abajo
+    </p>
+    <div class="w-full max-w-3xl px-4 md:px-8">
+        <Image 
+            src={banda} 
+            alt="Banda de quinceañero" 
+            class="w-full h-auto"
+            width={800}
+            height={200}
+            loading="eager"
+        />
+    </div>
+
+    <h1 class="text-primary font-titulo text-3xl md:text-4xl lg:text-5xl font-bold px-2 leading-tight text-center">
+        {saludo}
+    </h1>
+
+    <div class="w-full max-w-2xl">
+        <Image 
+            src={imagen_principal} 
+            alt="Nombre de la quinceañera" 
+            class="w-full h-auto"
+            width={1200}
+            height={800}
+            loading="lazy"
+            quality={80}
+        />
+    </div>
+</section>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    img {
+        aspect-ratio: attr(width) / attr(height);
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+    .animate-bounce {
+        animation: bounce 2s infinite;
+    }
+    .text-balance {
+        text-wrap: balance;
+    }
+</style>

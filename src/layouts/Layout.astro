@@ -1,22 +1,23 @@
+---
+import "@tailwind";
+import data from '@data';
+import BorderLayout from "@components/BorderLayout.astro";
+
+const { primer_nombre, segundo_nombre } = data;
+const nombre_completo = `${primer_nombre} ${segundo_nombre}`;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Mis 15 años | { nombre_completo }</title>
 	</head>
-	<body>
+	<body class="font-content">
+		<BorderLayout />
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

@@ -1,0 +1,54 @@
+---
+import Image from 'astro/components/Image.astro';
+import corona from '@assets/img/corona.svg';
+import data from '@data';
+const { padres, padrinos, invitacion } = data;
+---
+
+<section class="py-6 px-4 text-center space-y-8">
+    <div class="mb-8">
+        <Image
+            src={corona}
+            alt="Corona decorativa"
+            class="w-[180px] mx-auto"
+            width="80"
+            height="80"
+            loading="eager"
+            fetchpriority="high"
+        />
+    </div>
+
+    <header class="space-y-4 mb-8">
+        <h2 class="text-4xl text-primary font-script font-black">
+            Con la compañía de
+        </h2>
+    </header>
+
+    <div class="space-y-8 max-w-2xl mx-auto">
+        <section class="space-y-3">
+            <h3 class="font-decorator text-primary font-semibold text-3xl mb-2">
+                Mis padres
+            </h3>
+            <div class="space-y-1">
+                <p class="mb-2">{padres.padre}</p>
+                <p>{padres.madre}</p>
+            </div>
+        </section>
+
+        <section class="space-y-4">
+            <h3 class="font-decorator text-primary font-semibold text-3xl mb-2">
+                Mis padrinos
+            </h3>
+            <div class="space-y-1">
+                <p class="mb-2">{padrinos.padrino}</p>
+                <p>{padrinos.madrina}</p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="mt-12">
+        <p class="uppercase tracking-wide text-sm font-semibold text-gray-700">
+            {invitacion}
+        </p>
+    </footer>
+</section>
