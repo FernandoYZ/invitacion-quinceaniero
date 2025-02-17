@@ -1,11 +1,34 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '@layout';
+import Temporizador from '@components/Temporizador';
+import MusicPlayer from '@components/MusicPlayer';
+import audioFile from '@assets/music/musica.mp3';
+import PrimeraParte from '@components/PrimeraParte.astro';
+import SegundaParte from '@components/SegundaParte.astro';
+import PadresSection from '@components/PadresSection.astro';
+import Fecha from '@components/Fecha.astro';
+import PrimerAgradecimiento from '@components/PrimerAgradecimiento.astro';
+import Recepcion from '@components/Recepcion.astro';
+import Asistencia from '@components/Asistencia.astro';
+import Despedida from '@components/Despedida.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<main class="container mx-auto">
+		<PrimeraParte />
+		<Temporizador client:load />
+		<MusicPlayer 
+			audioUrl={audioFile}
+			songTitle="Veo en ti la luz" 
+			artist="ENREDADOS"
+			client:idle
+		/>
+		<SegundaParte />
+		<PadresSection />
+		<Fecha />
+		<PrimerAgradecimiento />
+		<Recepcion />
+		<Asistencia />
+		<Despedida />
+	</main>
 </Layout>
