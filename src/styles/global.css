@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tangerine:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+    --color-primary-50: #faf8fc;
+    --color-primary-100: #f4eff8;
+    --color-primary-200: #ece1f3;
+    --color-primary-300: #dccae8;
+    --color-primary-400: #d0b7e0;
+    --color-primary-500: #ae84c8;
+    --color-primary-600: #9868b5;
+    --color-primary-700: #83549c;
+    --color-primary-800: #6d4881;
+    --color-primary-900: #593b68;
+    --color-primary-950: #3c2249;
+    --color-primary: #6d4881;
+    --color-fondo: #fffdfd;
+    --font-decorator: "Cookie", serif;
+    --font-content: "Montserrat", serif;
+    --font-titulo: "Tangerine", serif;
+    --font-script: "Dancing Script", serif;
+}
+
+@layer utilities {
+    .will-change-position {
+        will-change: transform, opacity;
+    }
+}
